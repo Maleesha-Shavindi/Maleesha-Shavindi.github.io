@@ -5,298 +5,1360 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Maleesha Shavindi – Full-Stack Developer & IoT Researcher</title>
-  <meta name="description" content="Maleesha Shavindi — Final-year BSc (Hons) IT undergraduate at SLIIT, Full-Stack Developer, Teaching Assistant, and IoT & AI researcher." />
-  <meta name="keywords" content="Maleesha Shavindi, Full Stack Developer, React, Node.js, IoT, AI, SLIIT, Sri Lanka" />
+  <meta name="description" content="Maleesha Shavindi — Final-year BSc (Hons) IT undergraduate at SLIIT, Full-Stack Developer (React, Node.js), IoT & AI Researcher. Teaching Assistant at SLIIT; former Software Engineer Intern." />
+  <meta name="keywords" content="Maleesha Shavindi, Full-Stack Developer, React, Node.js, IoT, AI, Deep Learning, SLIIT, Sri Lanka, Portfolio" />
   <meta name="author" content="Maleesha Shavindi" />
+  <meta name="robots" content="index, follow" />
 
-  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <meta property="og:title" content="Maleesha Shavindi – Full-Stack Developer & IoT Researcher" />
+  <meta property="og:description" content="Full-Stack Developer (React & Node.js), IoT & AI Researcher. Teaching Assistant at SLIIT. Former Software Engineer Intern." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
 
   <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap & Icons -->
+  <!-- Bootstrap + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-  <!-- ================== STYLE ================== -->
   <style>
-    /* ===== ROOT ===== */
     :root{
-      --bg:#0a1a1a;
-      --bg2:#0f1c18;
-      --text:#e5e7eb;
-      --muted:#94a3b8;
-      --accent:#10b981;
-      --glass:rgba(255,255,255,0.04);
-      --stroke:rgba(255,255,255,0.10);
-      --radius:18px;
+      --bg: #0a1a1a;
+      --bg2: #0f1c18;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      --glass2: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.10);
+      --stroke2: rgba(255,255,255,0.14);
+      --accent: #10b981;
+      --accent2:#34d399;
+      --shadow: 0 18px 45px rgba(0,0,0,0.45);
+      --shadow2: 0 10px 28px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --radius2: 22px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family:"Poppins",sans-serif;
+      font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(900px 600px at 15% 10%, rgba(16,185,129,0.10), transparent 55%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
-      color:var(--text);
+        radial-gradient(1200px 900px at 12% 10%, rgba(16,185,129,0.10), transparent 55%),
+        radial-gradient(900px 700px at 85% 22%, rgba(52,211,153,0.08), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      overflow-x:hidden;
     }
 
-    /* ===== SIDEBAR ===== */
+    /* Subtle background grain */
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity:0.04;
+      mix-blend-mode: overlay;
+      z-index:0;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .muted{ color: var(--muted); }
+
+    /* Snow canvas (only Dec 1–31) */
+    #snowCanvas{
+      position:fixed;
+      inset:0;
+      z-index: 6;
+      pointer-events:none;
+      opacity:0.85;
+      display:none;
+    }
+
+    /* Sidebar (desktop) — minimal, not “boxed menu” look */
     .sidebar{
       position:fixed;
       top:0;
       left:0;
-      width:300px;
       height:100vh;
-      padding:22px 18px;
+      width: 310px;
+      padding: 18px 16px;
+      z-index: 10;
       display:none;
-      z-index:1000;
     }
-    @media(min-width:992px){
-      .sidebar{display:flex}
-      .main{margin-left:300px}
+    @media (min-width: 992px){
+      .sidebar{ display:block; }
+      .main{ margin-left: 310px; }
     }
 
-    .sidebar-inner{
-      width:100%;
-      height:100%;
-      padding:20px 18px;
+    .sidebar-shell{
+      height: 100%;
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 18px 16px;
       display:flex;
       flex-direction:column;
-      gap:14px;
-      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
-      border:1px solid var(--stroke);
-      border-radius:22px;
-      backdrop-filter:blur(14px);
+      gap: 14px;
     }
 
-    /* Profile */
     .profile{
-      text-align:center;
-      padding:10px 6px 4px;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .avatar{
-      width:96px;
-      height:96px;
-      border-radius:50%;
+      width: 62px; height: 62px;
+      border-radius: 50%;
       overflow:hidden;
-      margin:0 auto 8px;
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:0 14px 34px rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      flex: 0 0 auto;
     }
-    .avatar img{width:100%;height:100%;object-fit:cover}
-    .profile h1{
-      font-size:17px;
-      margin:4px 0 2px;
+    .avatar img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.05);
+    }
+    .p-name{
       font-weight:700;
-    }
-    .profile p{
-      font-size:12px;
-      color:var(--muted);
+      letter-spacing: 0.2px;
+      line-height: 1.15;
       margin:0;
-      line-height:1.4;
+      font-size: 18px;
+    }
+    .p-title{
+      margin: 4px 0 0 0;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
-    .socials{
+    .social-row{
       display:flex;
-      justify-content:center;
-      gap:10px;
-      margin-top:8px;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .social-btn{
-      width:38px;
-      height:38px;
+      width: 38px; height: 38px;
+      border-radius: 12px;
       display:grid;
       place-items:center;
-      border-radius:12px;
-      border:1px solid var(--stroke);
-      background:var(--glass);
-      color:var(--text);
-      transition:.2s;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
     .social-btn:hover{
-      background:rgba(16,185,129,.12);
-      border-color:rgba(16,185,129,.35);
-      transform:translateY(-2px);
+      transform: translateY(-2px);
+      border-color: rgba(52,211,153,0.35);
+      box-shadow: 0 14px 30px rgba(16,185,129,0.12);
     }
 
-    /* Navigation */
-    .navbox{
-      padding:10px;
-      border-radius:20px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .side-nav{
-      list-style:none;
-      padding:0;
-      margin:0;
+    .navlist{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap: 4px;
+      padding-top: 6px;
+      flex: 1 1 auto;
+      overflow:auto;
     }
-    .side-link{
+    .navlink{
       display:flex;
       align-items:center;
-      gap:12px;
-      padding:10px 14px;
-      border-radius:14px;
-      text-decoration:none;
-      color:var(--text);
-      font-size:13.5px;
-      transition:.18s;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      color: rgba(229,231,235,0.90);
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background .18s ease, transform .18s ease, border-color .18s ease;
     }
-    .side-link i{color:#34d399}
-    .side-link:hover{
-      background:rgba(255,255,255,.05);
-      transform:translateX(2px);
-    }
-    .side-link.active{
-      background:linear-gradient(90deg,rgba(16,185,129,.20),rgba(16,185,129,.05));
-      border:1px solid rgba(16,185,129,.30);
-    }
-
-    .sidebar-footer{
-      margin-top:auto;
-      padding-top:10px;
-      border-top:1px solid rgba(255,255,255,.10);
-      font-size:12px;
-      color:var(--muted);
+    .navlink i{
+      color: rgba(52,211,153,0.92);
+      font-size: 16px;
+      width: 18px;
       text-align:center;
     }
+    .navlink:hover{
+      background: rgba(255,255,255,0.035);
+      border-color: rgba(255,255,255,0.08);
+      transform: translateX(2px);
+    }
+    .navlink.active{
+      background: rgba(16,185,129,0.10);
+      border-color: rgba(52,211,153,0.18);
+    }
 
-    /* ===== MAIN ===== */
-    section{padding:90px 0}
-    .container-max{max-width:1100px}
+    .sidebar-foot{
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      color: rgba(148,163,184,0.95);
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+    }
+
+    /* Mobile top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      padding: 10px 12px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(10,26,26,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    @media (min-width: 992px){
+      .topbar{ display:none; }
+    }
+    .brand-mini{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .brand-mini .mini-avatar{
+      width: 34px; height: 34px; border-radius: 50%;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+    .brand-mini .mini-avatar img{ width:100%; height:100%; object-fit:cover; }
+    .brand-mini .mini-name{
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Offcanvas styling (mobile) */
+    .offcanvas-glass{
+      background: linear-gradient(180deg, rgba(15,28,24,0.92), rgba(10,26,26,0.92));
+      border-right: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--text);
+    }
+    .offcanvas .btn-close{
+      filter: invert(1);
+      opacity: 0.85;
+    }
+
+    /* Content shells */
+    .main{
+      position:relative;
+      z-index: 2;
+    }
+
+    .section{
+      padding: 76px 0;
+    }
+    .section-sm{
+      padding: 54px 0;
+    }
+
+    .container-xl{
+      max-width: 1140px;
+    }
+
+    .kicker{
+      color: rgba(52,211,153,0.92);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .h2-title{
+      font-weight: 700;
+      font-size: clamp(22px, 2.2vw, 30px);
+      margin: 0 0 12px 0;
+      letter-spacing: 0.2px;
+    }
+    .lead-muted{
+      color: rgba(148,163,184,0.95);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .glass-card{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .glass-card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(52,211,153,0.22);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.48);
+    }
+    .card-pad{ padding: 18px; }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(16,185,129,0.10);
+      border: 1px solid rgba(52,211,153,0.16);
+      color: rgba(229,231,235,0.92);
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .chip i{ color: rgba(52,211,153,0.95); }
 
     /* Hero */
-    #hero{
-      min-height:100vh;
+    .hero{
+      position:relative;
+      min-height: 92vh;
       display:flex;
       align-items:center;
+      padding: 88px 0 64px;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(180deg,rgba(10,26,26,.65),rgba(15,28,24,.85)),
-        url("assets/img/hero-bg.jpg") center/cover;
+        linear-gradient(180deg, rgba(10,26,26,0.35) 0%, rgba(10,26,26,0.85) 70%, rgba(10,26,26,0.95) 100%),
+        url("assets/img/hero-bg.jpg") center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.05);
+      z-index:0;
     }
-    #hero h2{
-      font-size:52px;
-      font-weight:800;
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:-200px -200px auto auto;
+      width: 680px; height: 680px;
+      background: radial-gradient(circle at 30% 30%, rgba(52,211,153,0.18), transparent 60%);
+      transform: rotate(25deg);
+      z-index:0;
+      pointer-events:none;
     }
-    #hero p{
-      max-width:700px;
-      color:var(--muted);
-      line-height:1.8;
+    .hero-inner{
+      position:relative;
+      z-index:1;
+    }
+    .hero-title{
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.08;
+      margin: 0 0 14px 0;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.40);
+    }
+    .hero-sub{
+      font-size: clamp(14px, 1.35vw, 18px);
+      line-height: 1.85;
+      color: rgba(229,231,235,0.92);
+      margin: 0 0 22px 0;
+      max-width: 760px;
+    }
+    .typing{
+      display:inline-block;
+      color: rgba(52,211,153,0.95);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 18px;
     }
 
-    .btn-main{
-      background:linear-gradient(180deg,#10b981,#059669);
-      color:#042016;
-      font-weight:700;
-      padding:12px 18px;
-      border-radius:14px;
-      border:none;
+    .btn-accent{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(16,185,129,0.95), rgba(16,185,129,0.82));
+      border: 1px solid rgba(52,211,153,0.35);
+      color: #071816;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      box-shadow: 0 16px 35px rgba(16,185,129,0.16);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .btn-accent:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 46px rgba(16,185,129,0.20);
+      filter: brightness(1.03);
+      color: #061413;
     }
 
-    /* Cards */
-    .card-glass{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:22px;
-      padding:22px;
-      height:100%;
-      transition:.2s;
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(229,231,235,0.92);
+      font-weight: 600;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
-    .card-glass:hover{
-      transform:translateY(-4px);
-      border-color:rgba(16,185,129,.30);
+    .btn-ghost:hover{
+      transform: translateY(-2px);
+      border-color: rgba(52,211,153,0.24);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.40);
     }
 
-    footer{
-      padding:30px 0;
-      text-align:center;
-      font-size:12px;
-      color:var(--muted);
+    .hero-card{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .hero-card .mini{
+      font-size: 13px;
+      color: rgba(148,163,184,0.95);
+      line-height: 1.7;
+      margin:0;
+    }
+
+    /* Progress bars */
+    .skill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(229,231,235,0.92);
+      font-size: 13px;
+    }
+    .pill .dot{
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(52,211,153,0.9);
+      box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
+    }
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow:hidden;
+    }
+    .bar > span{
+      display:block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(16,185,129,0.95), rgba(52,211,153,0.85));
+      border-right: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 6px rgba(16,185,129,0.08);
+      transition: width 1.4s ease;
+    }
+    .bar-meta{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      font-size: 12.5px;
+      color: rgba(148,163,184,0.95);
+      margin-top: 10px;
+    }
+
+    /* Timeline */
+    .role{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .role .icon{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: rgba(16,185,129,0.10);
+      border: 1px solid rgba(52,211,153,0.16);
+      color: rgba(52,211,153,0.95);
+      flex: 0 0 auto;
+    }
+    .role h3{
+      font-size: 16px;
+      font-weight: 700;
+      margin:0;
+      line-height:1.35;
+    }
+    .role .meta{
+      margin-top: 4px;
+      font-size: 13px;
+      color: rgba(148,163,184,0.95);
+    }
+    .role ul{
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      color: rgba(229,231,235,0.90);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    /* Project cards */
+    .proj-title{
+      font-weight: 700;
+      font-size: 15.5px;
+      margin: 0 0 8px 0;
+      line-height: 1.35;
+    }
+    .proj-desc{
+      margin: 0 0 12px 0;
+      color: rgba(148,163,184,0.95);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+    .tag{
+      font-size: 12px;
+      color: rgba(229,231,235,0.90);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      white-space:nowrap;
+    }
+
+    /* Footer */
+    .footer{
+      padding: 26px 0 44px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(148,163,184,0.95);
+      font-size: 13px;
+    }
+
+    /* Selection highlight */
+    ::selection{
+      background: rgba(52,211,153,0.22);
+      color: var(--text);
     }
   </style>
 </head>
 
 <body>
+  <!-- Snow (Dec 1–31 only) -->
+  <canvas id="snowCanvas" aria-hidden="true"></canvas>
 
-<!-- ===== SIDEBAR ===== -->
-<aside class="sidebar">
-  <div class="sidebar-inner">
-    <div class="profile">
-      <div class="avatar">
-        <img src="assets/img/profile.jpg" alt="Maleesha Shavindi">
+  <!-- Desktop Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-shell">
+      <div class="profile">
+        <div class="avatar">
+          <img src="assets/img/profile.jpg" alt="Maleesha Shavindi profile photo" />
+        </div>
+        <div>
+          <p class="p-name">Maleesha Shavindi</p>
+          <p class="p-title">Final-year IT Undergraduate · Full-Stack Developer · IoT & AI Research</p>
+        </div>
       </div>
-      <h1>Maleesha Shavindi</h1>
-      <p>Full-Stack Developer • IoT & AI Research</p>
 
-      <div class="socials">
-        <a class="social-btn" href="#"><i class="bi bi-linkedin"></i></a>
-        <a class="social-btn" href="#"><i class="bi bi-github"></i></a>
+      <div class="social-row">
+        <a class="social-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a class="social-btn" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="bi bi-github"></i>
+        </a>
+        <a class="social-btn" href="#contact" aria-label="Contact">
+          <i class="bi bi-envelope"></i>
+        </a>
+      </div>
+
+      <nav class="navlist" id="sideNav">
+        <a class="navlink" href="#home"><i class="bi bi-house"></i><span>Home</span></a>
+        <a class="navlink" href="#about"><i class="bi bi-person"></i><span>About</span></a>
+        <a class="navlink" href="#experience"><i class="bi bi-briefcase"></i><span>Experience</span></a>
+        <a class="navlink" href="#skills"><i class="bi bi-stars"></i><span>Skills</span></a>
+        <a class="navlink" href="#education"><i class="bi bi-mortarboard"></i><span>Education</span></a>
+        <a class="navlink" href="#projects"><i class="bi bi-grid-1x2"></i><span>Projects</span></a>
+        <a class="navlink" href="#publications"><i class="bi bi-journal-text"></i><span>Publications</span></a>
+        <a class="navlink" href="#contact"><i class="bi bi-geo-alt"></i><span>Contact</span></a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <span>maleesha-shavindi.github.io</span>
+        <span>2025–2026</span>
       </div>
     </div>
+  </aside>
 
-    <div class="navbox">
-      <ul class="side-nav">
-        <li><a class="side-link active" href="#hero"><i class="bi bi-house"></i>Home</a></li>
-        <li><a class="side-link" href="#about"><i class="bi bi-person"></i>About</a></li>
-        <li><a class="side-link" href="#experience"><i class="bi bi-briefcase"></i>Experience</a></li>
-        <li><a class="side-link" href="#skills"><i class="bi bi-stars"></i>Skills</a></li>
-        <li><a class="side-link" href="#education"><i class="bi bi-mortarboard"></i>Education</a></li>
-        <li><a class="side-link" href="#projects"><i class="bi bi-grid"></i>Projects</a></li>
-        <li><a class="side-link" href="#publications"><i class="bi bi-journal-text"></i>Publications</a></li>
-      </ul>
+  <!-- Mobile Topbar -->
+  <div class="topbar">
+    <div class="brand-mini">
+      <div class="mini-avatar">
+        <img src="assets/img/profile.jpg" alt="Maleesha Shavindi profile photo" />
+      </div>
+      <div class="mini-name">Maleesha Shavindi</div>
     </div>
+    <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Open navigation">
+      <i class="bi bi-list" style="font-size:18px;"></i>
+    </button>
+  </div>
 
-    <div class="sidebar-footer">
-      © <span id="year"></span> Maleesha Shavindi
+  <!-- Mobile Offcanvas -->
+  <div class="offcanvas offcanvas-start offcanvas-glass" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
+    <div class="offcanvas-header">
+      <div>
+        <div id="mobileNavLabel" style="font-weight:700; letter-spacing:0.2px;">Navigation</div>
+        <div class="muted" style="font-size:12.5px; margin-top:2px;">Quick access to sections</div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-flex align-items-center gap-3 pb-3 mb-3" style="border-bottom: 1px solid rgba(255,255,255,0.10);">
+        <div class="avatar" style="width:54px;height:54px;">
+          <img src="assets/img/profile.jpg" alt="Maleesha Shavindi profile photo" />
+        </div>
+        <div>
+          <div style="font-weight:700; line-height:1.2;">Maleesha Shavindi</div>
+          <div class="muted" style="font-size:12.5px; line-height:1.5;">Full-Stack Developer · IoT & AI Research</div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2 mb-3">
+        <a class="social-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="social-btn" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a class="social-btn" href="#contact" data-bs-dismiss="offcanvas" aria-label="Contact"><i class="bi bi-envelope"></i></a>
+      </div>
+
+      <div class="navlist" style="gap:6px;">
+        <a class="navlink" href="#home" data-bs-dismiss="offcanvas"><i class="bi bi-house"></i><span>Home</span></a>
+        <a class="navlink" href="#about" data-bs-dismiss="offcanvas"><i class="bi bi-person"></i><span>About</span></a>
+        <a class="navlink" href="#experience" data-bs-dismiss="offcanvas"><i class="bi bi-briefcase"></i><span>Experience</span></a>
+        <a class="navlink" href="#skills" data-bs-dismiss="offcanvas"><i class="bi bi-stars"></i><span>Skills</span></a>
+        <a class="navlink" href="#education" data-bs-dismiss="offcanvas"><i class="bi bi-mortarboard"></i><span>Education</span></a>
+        <a class="navlink" href="#projects" data-bs-dismiss="offcanvas"><i class="bi bi-grid-1x2"></i><span>Projects</span></a>
+        <a class="navlink" href="#publications" data-bs-dismiss="offcanvas"><i class="bi bi-journal-text"></i><span>Publications</span></a>
+        <a class="navlink" href="#contact" data-bs-dismiss="offcanvas"><i class="bi bi-geo-alt"></i><span>Contact</span></a>
+      </div>
+
+      <div class="mt-4 muted" style="font-size:12.5px;">
+        Hosted on GitHub Pages.
+      </div>
     </div>
   </div>
-</aside>
 
-<!-- ===== MAIN ===== -->
-<main class="main">
+  <!-- Main Content -->
+  <main class="main">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container-xl">
+        <div class="row align-items-center g-4 hero-inner">
+          <div class="col-lg-7" data-aos="fade-up">
+            <div class="kicker">Full-Stack · IoT · AI Research</div>
+            <h1 class="hero-title">Maleesha Shavindi</h1>
+            <p class="hero-sub">
+              <span class="typing" id="typedTarget"></span>
+              <br />
+              Final-year BSc (Hons) Information Technology undergraduate at SLIIT, Sri Lanka — building scalable web applications and research-driven IoT + Deep Learning solutions.
+            </p>
 
-<section id="hero">
-  <div class="container container-max">
-    <h2 data-aos="fade-up">Maleesha Shavindi</h2>
-    <p data-aos="fade-up" data-aos-delay="100">
-      Final-year BSc (Hons) IT undergraduate at SLIIT with strong experience in
-      React, Node.js, IoT systems, and AI-driven research.
-    </p>
-    <a class="btn-main mt-3 d-inline-block" href="assets/pdf/Maleesha_Shavindi_CV.pdf">Download CV</a>
-  </div>
-</section>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn-accent" href="assets/pdf/Maleesha_Shavindi_CV.pdf" target="_blank" rel="noopener">
+                <i class="bi bi-download"></i> Download CV
+              </a>
+              <a class="btn-ghost" href="#projects">
+                <i class="bi bi-grid-1x2"></i> View Projects
+              </a>
+              <a class="btn-ghost" href="#contact">
+                <i class="bi bi-envelope"></i> Contact
+              </a>
+            </div>
 
-<section id="about">
-  <div class="container container-max">
-    <div class="card-glass">
-      <h4>About</h4>
-      <p>
-        Currently working as a Teaching Assistant at SLIIT and former Software Engineer Intern.
-        Passionate about scalable web systems, IoT monitoring, and Deep Learning research.
-      </p>
+            <div class="hero-meta">
+              <span class="chip"><i class="bi bi-award"></i> Teaching Assistant · SLIIT</span>
+              <span class="chip"><i class="bi bi-cpu"></i> IoT + Deep Learning Research</span>
+              <span class="chip"><i class="bi bi-code-slash"></i> React · Node.js · Python</span>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="fade-left" data-aos-delay="80">
+            <div class="hero-card">
+              <div class="d-flex align-items-center justify-content-between">
+                <div style="font-weight:700; letter-spacing:0.2px;">Profile Snapshot</div>
+                <div class="muted" style="font-size:12.5px;">2025–2026 Ready</div>
+              </div>
+              <div class="mt-3">
+                <p class="mini mb-2">
+                  Full-stack delivery across React, Node.js/Express, Java, and Python with Firebase and modern UI/UX tooling. Comfortable with Agile, code review, and test-driven quality.
+                </p>
+                <p class="mini mb-0">
+                  Current focus: automated tissue culture monitoring with IoT sensors and CNN-based disease classification.
+                </p>
+              </div>
+              <div class="mt-3 d-flex flex-wrap gap-2">
+                <span class="tag">React.js</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">IoT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container-xl">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-5" data-aos="fade-up">
+            <div class="kicker">About</div>
+            <h2 class="h2-title">Research-minded engineering, production-ready delivery</h2>
+            <p class="lead-muted">
+              Final-year IT undergraduate at SLIIT with strong full-stack development experience using React.js, Node.js, Java, Python, Firebase, and FastAPI. Passionate about building scalable web applications, IoT systems, and AI-driven solutions. Currently contributing as a Teaching Assistant at SLIIT and actively researching automated tissue culture monitoring using Deep Learning and IoT.
+            </p>
+            <div class="mt-4 d-flex flex-wrap gap-2">
+              <span class="pill"><span class="dot"></span> Full-Stack Web</span>
+              <span class="pill"><span class="dot"></span> IoT Systems</span>
+              <span class="pill"><span class="dot"></span> CNN Image Classification</span>
+              <span class="pill"><span class="dot"></span> UI/UX with Figma</span>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="60">
+            <div class="glass-card card-pad h-100">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="role">
+                    <div class="icon"><i class="bi bi-check2-circle"></i></div>
+                    <div>
+                      <h3>Engineering Discipline</h3>
+                      <div class="meta">Clean architecture, reusable components, predictable APIs</div>
+                      <ul>
+                        <li>API design with validation and consistent error handling</li>
+                        <li>Git-based workflows and review-driven collaboration</li>
+                        <li>Unit/Integration testing focus for stability</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="role">
+                    <div class="icon"><i class="bi bi-lightning-charge"></i></div>
+                    <div>
+                      <h3>Product & Research Blend</h3>
+                      <div class="meta">Practical systems with measurable outcomes</div>
+                      <ul>
+                        <li>IoT pipelines (sensors → MQTT/cloud → dashboards)</li>
+                        <li>Deep learning basics for classification and analysis</li>
+                        <li>UI/UX iteration with Figma and modern component libraries</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mt-2 p-3" style="border-radius:18px; background: rgba(16,185,129,0.08); border:1px solid rgba(52,211,153,0.16);">
+                    <div style="font-weight:700; margin-bottom:6px;">Now open to</div>
+                    <div class="muted" style="line-height:1.8; font-size:14px;">
+                      Full-Stack roles (React/Node.js), IoT engineering, and AI/ML research collaborations for 2025–2026 applications.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section-sm">
+      <div class="container-xl">
+        <div class="kicker">Experience</div>
+        <h2 class="h2-title">Industry + academic delivery</h2>
+
+        <div class="row g-3 mt-2">
+          <div class="col-lg-6" data-aos="fade-up">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-mortarboard"></i></div>
+                <div>
+                  <h3>Teaching Assistant — SLIIT</h3>
+                  <div class="meta">June 2025 – Present · Modules: Software Engineering, HCI, Cloud Computing</div>
+                  <ul>
+                    <li>Supported labs and assessments with clear technical guidance and debugging.</li>
+                    <li>Helped students strengthen engineering practices: SDLC, documentation, and testing.</li>
+                    <li>Assisted with marking workflows and quality checks against rubrics.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mt-3 tags">
+                <span class="tag">Mentoring</span>
+                <span class="tag">SE</span>
+                <span class="tag">HCI</span>
+                <span class="tag">Cloud</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="60">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-briefcase"></i></div>
+                <div>
+                  <h3>Software Engineer Intern — Sakdunu Holdings</h3>
+                  <div class="meta">Jan 2024 – Aug 2025 · React, Node.js, Firebase, Java, Python, Figma · Agile</div>
+                  <ul>
+                    <li>Delivered full-stack features: responsive UI, REST endpoints, and Firebase-backed flows.</li>
+                    <li>Worked with Agile planning, iterative releases, and cross-team coordination.</li>
+                    <li>Contributed to UI/UX improvements using Figma and component-driven development.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mt-3 tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">Java</span>
+                <span class="tag">Python</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="container-xl">
+        <div class="kicker">Skills</div>
+        <h2 class="h2-title">A practical full-stack toolkit</h2>
+        <p class="lead-muted mb-4">Grouped by delivery layer, with emphasis on modern web, backend APIs, data, and emerging research skills.</p>
+
+        <div class="row g-3">
+          <div class="col-lg-6" data-aos="fade-up">
+            <div class="glass-card card-pad h-100">
+              <div style="font-weight:700; margin-bottom:8px;">Languages</div>
+              <div class="skill-row">
+                <span class="pill"><span class="dot"></span> Java</span>
+                <span class="pill"><span class="dot"></span> JavaScript</span>
+                <span class="pill"><span class="dot"></span> Python</span>
+                <span class="pill"><span class="dot"></span> HTML/CSS</span>
+              </div>
+
+              <div class="mt-4">
+                <div class="bar-meta"><span>Full-Stack Development</span><span>Advanced</span></div>
+                <div class="bar" data-skill="90"><span></span></div>
+
+                <div class="bar-meta mt-3"><span>Backend API Engineering</span><span>Strong</span></div>
+                <div class="bar" data-skill="82"><span></span></div>
+
+                <div class="bar-meta mt-3"><span>Research & Prototyping</span><span>Strong</span></div>
+                <div class="bar" data-skill="78"><span></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="60">
+            <div class="glass-card card-pad h-100">
+              <div style="font-weight:700; margin-bottom:8px;">Frontend</div>
+              <div class="skill-row">
+                <span class="pill"><span class="dot"></span> React.js</span>
+                <span class="pill"><span class="dot"></span> Tailwind CSS</span>
+                <span class="pill"><span class="dot"></span> Material-UI</span>
+                <span class="pill"><span class="dot"></span> Figma (UI/UX)</span>
+              </div>
+
+              <div style="font-weight:700; margin: 18px 0 8px;">Backend</div>
+              <div class="skill-row">
+                <span class="pill"><span class="dot"></span> Node.js</span>
+                <span class="pill"><span class="dot"></span> Express</span>
+                <span class="pill"><span class="dot"></span> Spring Boot</span>
+                <span class="pill"><span class="dot"></span> FastAPI</span>
+                <span class="pill"><span class="dot"></span> Flask</span>
+              </div>
+
+              <div style="font-weight:700; margin: 18px 0 8px;">Databases & Practices</div>
+              <div class="skill-row">
+                <span class="pill"><span class="dot"></span> MongoDB</span>
+                <span class="pill"><span class="dot"></span> MySQL</span>
+                <span class="pill"><span class="dot"></span> Firebase</span>
+                <span class="pill"><span class="dot"></span> Git</span>
+                <span class="pill"><span class="dot"></span> Agile</span>
+                <span class="pill"><span class="dot"></span> Firebase Auth</span>
+                <span class="pill"><span class="dot"></span> Testing (Unit/Integration)</span>
+                <span class="pill"><span class="dot"></span> Code Review</span>
+              </div>
+
+              <div class="mt-3" style="padding: 12px 14px; border-radius: 18px; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.10);">
+                <div style="font-weight:700; margin-bottom:6px;">Emerging</div>
+                <div class="muted" style="font-size:14px; line-height:1.75;">
+                  Machine Learning basics, IoT, Deep Learning (CNNs for image classification)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section-sm">
+      <div class="container-xl">
+        <div class="kicker">Education</div>
+        <h2 class="h2-title">Academic foundation</h2>
+
+        <div class="row g-3 mt-2">
+          <div class="col-lg-7" data-aos="fade-up">
+            <div class="glass-card card-pad">
+              <div class="role">
+                <div class="icon"><i class="bi bi-mortarboard-fill"></i></div>
+                <div>
+                  <h3>BSc (Hons) Information Technology — SLIIT</h3>
+                  <div class="meta">Feb 2021 – Nov 2024 · Second Upper (CGPA 3.15) · Two Certificates of Excellence</div>
+                  <ul>
+                    <li>Focus areas: full-stack engineering, cloud concepts, HCI, and applied research.</li>
+                    <li>Built multiple end-to-end systems across web, mobile, and IoT dashboards.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="60">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-journal"></i></div>
+                <div>
+                  <h3>GCE A/L Physical Science — St. Peter’s College, Negombo</h3>
+                  <div class="meta">2019</div>
+                  <ul>
+                    <li>Strong analytical foundation supporting engineering and research work.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container-xl">
+        <div class="kicker">Projects</div>
+        <h2 class="h2-title">Selected work</h2>
+        <p class="lead-muted mb-4">Glass cards with a clean hover lift; optimized for recruiter scanning and research credibility.</p>
+
+        <div class="row g-3">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="glass-card card-pad h-100">
+              <div class="proj-title">Automated Coconut Tissue Culture Monitoring System (Ongoing Research)</div>
+              <div class="proj-desc">IoT + Deep Learning pipeline for monitoring and classification; research-aligned dashboard and API layer. Published at ICAC 2024.</div>
+              <div class="tags">
+                <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Firebase</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="40">
+            <div class="glass-card card-pad h-100">
+              <div class="proj-title">IoT-Based Wearable Health Monitoring System</div>
+              <div class="proj-desc">Wearable telemetry with MQTT messaging and a React dashboard for live metrics visualization.</div>
+              <div class="tags">
+                <span class="tag">React Dashboard</span><span class="tag">C++</span><span class="tag">MQTT</span><span class="tag">HiveMQ</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+            <div class="glass-card card-pad h-100">
+              <div class="proj-title">Innovation Management Web App</div>
+              <div class="proj-desc">Full-stack platform for idea intake, tracking, and workflow states with clean REST APIs.</div>
+              <div class="tags">
+                <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="glass-card card-pad h-100">
+              <div class="proj-title">Social Media for Food Blogging</div>
+              <div class="proj-desc">Community-driven features with authentication, CRUD workflows, and relational persistence.</div>
+              <div class="tags">
+                <span class="tag">React</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="40">
+            <div class="glass-card card-pad h-100">
+              <div class="proj-title">Note-Taking Mobile App</div>
+              <div class="proj-desc">Android app focused on clean UX, offline-first usage patterns, and structured storage.</div>
+              <div class="tags">
+                <span class="tag">Java</span><span class="tag">Android Studio</span><span class="tag">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+            <div class="glass-card card-pad h-100">
+              <div class="proj-title">Research & Prototyping Track</div>
+              <div class="proj-desc">Rapid iterations across dashboards, APIs, and model experiments to validate real-world feasibility.</div>
+              <div class="tags">
+                <span class="tag">Agile</span><span class="tag">Figma</span><span class="tag">Testing</span><span class="tag">Code Review</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="section-sm">
+      <div class="container-xl">
+        <div class="kicker">Publications & Achievements</div>
+        <h2 class="h2-title">Research credibility and certifications</h2>
+
+        <div class="row g-3 mt-2">
+          <div class="col-lg-7" data-aos="fade-up">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-journal-text"></i></div>
+                <div>
+                  <h3>ICAC 2024 Paper</h3>
+                  <div class="meta">“Effectiveness of Deep Learning and IoT for Disease Classification and Characterizing Tissue Culture Calli”</div>
+                  <ul>
+                    <li>Applied CNN-based classification concepts to a practical IoT monitoring workflow.</li>
+                    <li>Focused on measurable improvements and real-world deployment feasibility.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="60">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-patch-check"></i></div>
+                <div>
+                  <h3>AWS Academy Graduate</h3>
+                  <div class="meta">AWS Cloud Foundations</div>
+                  <ul>
+                    <li>Core cloud concepts, compute, storage, networking, and security fundamentals.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container-xl">
+        <div class="kicker">Contact</div>
+        <h2 class="h2-title">Let’s connect</h2>
+        <p class="lead-muted mb-4">No forms — direct contact only for faster collaboration.</p>
+
+        <div class="row g-3">
+          <div class="col-lg-4" data-aos="fade-up">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <h3>Email</h3>
+                  <div class="meta"><a href="mailto:maleeshashavindi@gmail.com">maleeshashavindi@gmail.com</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="40">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-telephone"></i></div>
+                <div>
+                  <h3>Phone</h3>
+                  <div class="meta"><a href="tel:+94775722625">+94 77 572 2625</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="glass-card card-pad h-100">
+              <div class="role">
+                <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <h3>Location</h3>
+                  <div class="meta">Negombo, Sri Lanka</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12" data-aos="fade-up">
+            <div class="glass-card card-pad">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div>
+                  <div style="font-weight:700;">Social</div>
+                  <div class="muted" style="font-size:14px; line-height:1.75;">
+                    LinkedIn and GitHub links can be updated to your exact profiles.
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <a class="btn-ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                    <i class="bi bi-linkedin"></i> LinkedIn
+                  </a>
+                  <a class="btn-ghost" href="https://github.com/" target="_blank" rel="noopener">
+                    <i class="bi bi-github"></i> GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="container-xl d-flex flex-wrap justify-content-between gap-2">
+        <div>© <span id="year"></span> Maleesha Shavindi. All rights reserved.</div>
+        <div class="muted">Built for GitHub Pages · Dark glass-morphism theme</div>
+      </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<footer>
-  Built with Bootstrap 5 • Apple Glass Dark Theme
-</footer>
+  <!-- JS CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
-</main>
+  <script>
+    (function(){
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({duration:700,once:false});
-  document.getElementById("year").textContent=new Date().getFullYear();
-</script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 80
+      });
 
+      new Typed("#typedTarget", {
+        strings: [
+          "Full-Stack Developer | React & Node.js Specialist | IoT & AI Researcher",
+          "Teaching Assistant at SLIIT | Former Software Engineer Intern",
+          "Building scalable web apps and research-driven IoT + Deep Learning solutions"
+        ],
+        typeSpeed: 42,
+        backSpeed: 22,
+        backDelay: 1300,
+        loop: true,
+        smartBackspace: true,
+        showCursor: true,
+        cursorChar: "|"
+      });
+
+      function closeOffcanvasIfOpen(){
+        var el = document.getElementById("mobileNav");
+        if(!el) return;
+        var inst = bootstrap.Offcanvas.getInstance(el);
+        if(inst) inst.hide();
+      }
+
+      // Smooth scroll with header offset, and close mobile nav
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener("click", function(e){
+          var href = a.getAttribute("href");
+          if(!href || href.length < 2) return;
+
+          var target = document.querySelector(href);
+          if(!target) return;
+
+          e.preventDefault();
+          closeOffcanvasIfOpen();
+
+          var y = target.getBoundingClientRect().top + window.scrollY - 60;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        });
+      });
+
+      // Sidebar active link highlighting (desktop)
+      var sections = ["home","about","experience","skills","education","projects","publications","contact"]
+        .map(function(id){ return document.getElementById(id); })
+        .filter(Boolean);
+
+      var sideLinks = Array.prototype.slice.call(document.querySelectorAll(".sidebar .navlink"));
+      function setActiveLink(){
+        var pos = window.scrollY + 140;
+        var current = sections[0] ? sections[0].id : "";
+        for(var i=0;i<sections.length;i++){
+          if(sections[i].offsetTop <= pos) current = sections[i].id;
+        }
+        sideLinks.forEach(function(l){
+          var isMatch = l.getAttribute("href") === "#" + current;
+          l.classList.toggle("active", isMatch);
+        });
+      }
+      window.addEventListener("scroll", setActiveLink, { passive:true });
+      setActiveLink();
+
+      // Animate skill bars when #skills enters viewport
+      var skillsSection = document.getElementById("skills");
+      var barsAnimated = false;
+      function animateBars(){
+        if(!skillsSection || barsAnimated) return;
+        var rect = skillsSection.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.75){
+          document.querySelectorAll(".bar").forEach(function(b){
+            var v = b.getAttribute("data-skill") || "0";
+            var span = b.querySelector("span");
+            if(span) span.style.width = v + "%";
+          });
+          barsAnimated = true;
+        }
+      }
+      window.addEventListener("scroll", animateBars, { passive:true });
+      animateBars();
+
+      // Snowfall effect only Dec 1–31
+      function isDecemberWindow(d){
+        var m = d.getMonth();   // 0-11
+        var day = d.getDate();  // 1-31
+        return (m === 11 && day >= 1 && day <= 31);
+      }
+
+      var canvas = document.getElementById("snowCanvas");
+      var ctx = canvas.getContext("2d");
+      var flakes = [];
+      var running = false;
+
+      function resizeCanvas(){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function makeFlakes(count){
+        flakes = [];
+        for(var i=0;i<count;i++){
+          flakes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: 0.8 + Math.random() * 2.2,
+            vx: -0.2 + Math.random() * 0.4,
+            vy: 0.35 + Math.random() * 0.75,
+            a: 0.15 + Math.random() * 0.35
+          });
+        }
+      }
+
+      function step(){
+        if(!running) return;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+        for(var i=0;i<flakes.length;i++){
+          var f = flakes[i];
+          f.x += f.vx;
+          f.y += f.vy;
+
+          if(f.y > canvas.height + 10){
+            f.y = -10;
+            f.x = Math.random() * canvas.width;
+          }
+          if(f.x < -10) f.x = canvas.width + 10;
+          if(f.x > canvas.width + 10) f.x = -10;
+
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(255,255,255," + f.a + ")";
+          ctx.fill();
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      function startSnow(){
+        if(running) return;
+        running = true;
+        canvas.style.display = "block";
+        resizeCanvas();
+
+        var area = canvas.width * canvas.height;
+        var count = Math.max(50, Math.min(140, Math.floor(area / 22000)));
+        makeFlakes(count);
+
+        step();
+      }
+
+      function stopSnow(){
+        running = false;
+        canvas.style.display = "none";
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+      }
+
+      function evaluateSnow(){
+        var now = new Date();
+        if(isDecemberWindow(now)) startSnow();
+        else stopSnow();
+      }
+
+      window.addEventListener("resize", function(){
+        if(!running) return;
+        resizeCanvas();
+      });
+
+      evaluateSnow();
+
+      // Re-evaluate once per hour (covers date changes without reload)
+      setInterval(evaluateSnow, 60 * 60 * 1000);
+    })();
+  </script>
 </body>
 </html>
